@@ -1,0 +1,41 @@
+---
+title: "Sta-518 Self Reflection"
+author: "Sam_Inturi"
+date: "11/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readr)
+library(readxl)
+```
+
+# STA 518 Objectives:-
+
+## 1.Import, manage, and clean data:-
+
+I can import data from a variety of sources.
+
+```{r}
+# Read TXT files with read.table()
+ftxt <- read.table("https://alexd106.github.io/intro2R/data/children.txt", 
+                 header = TRUE)
+ftxt
+
+# Read in csv files with read_csv()
+college_grades<- read_csv("data/recent-grads.csv")
+college_grades
+
+# Read in xlsx files with read_excel()
+fxlsx <- read_excel("data/loyn.xlsx")
+fxlsx
+```
+
+I can isolate information from a larger data source.
+
+```{r}
+
+```
+

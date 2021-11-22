@@ -95,5 +95,9 @@ full_join(x = orders, y = customers, by = "id")
 semi_join(x = orders, y = customers, by = "id")
 ```
 
+I can restructure information to be in a “tidy” format.
 
+```{r}
+
+```
 

@@ -1,4 +1,4 @@
-bsal,sal(1977),sex,senior,age(in months),educ(in years),exper(in months)
+bsal,ansal,sex,senior,age,educ,exper
 5040,12420,MALE,96,329,15,14
 6300,12060,MALE,82,357,15,72
 6000,15120,MALE,67,315,15,35.5

@@ -59,10 +59,13 @@ fbanksal
 # Randomly select rows from banksal table
 slice_sample(banksal, n = 5, replace = TRUE)
 
- 
-# arrange(nls_stu, !desc(id))
-# distinct(college)
+# using select statement 
+select(iris, petal_length = Petal.Length)
 
+# using summarize state
+college_recent_grads %>%
+  select(n=median) %>%
+  summarise(total = sum(n), max = max(n), mean = mean(n), min = min(n), sd = sd(n), median = median(n))
 ```
 
 I can combine information from multiple data sources
@@ -102,3 +105,8 @@ I can restructure information to be in a “tidy” format.
 ```
 
 I can transform information to be in a format better suited for specific tasks.
+
+```{r}
+
+```
+

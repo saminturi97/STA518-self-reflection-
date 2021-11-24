@@ -101,3 +101,4 @@ I can restructure information to be in a “tidy” format.
 
 ```
 
+I can transform information to be in a format better suited for specific tasks.

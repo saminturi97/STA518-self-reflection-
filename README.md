@@ -1,6 +1,6 @@
 # STA518-self-reflection
 ## STA 518 Objectives:- 
-1. Import, manage, and clean data 
+Objective-1. Import, manage, and clean data 
   
   I can import data from a variety of sources.
   
@@ -12,7 +12,7 @@
   
   I can transform information to be in a format better suited for specific tasks.
 
-2. Create graphical displays and numerical summaries of data for exploratory analysis and presentations
+Objective-2. Create graphical displays and numerical summaries of data for exploratory analysis and presentations
   
   I can create tables of numerical summaries that draw attention to important comparisons.
   
@@ -20,7 +20,7 @@
   
   I can combine multiple graphical displays or numerical summaries into an effective data product.
 
-3. Write R programs for simulations from probability models and randomization-based experiments
+Objective-3. Write R programs for simulations from probability models and randomization-based experiments
   
   I can write a function that accomplishes a common analysis task.
   
@@ -32,7 +32,7 @@
   
   I can fit a regression model for descriptive analysis.
 
-4. Use source documentation and other resources to troubleshoot and extend R programs.
+Objective-4. Use source documentation and other resources to troubleshoot and extend R programs.
   
   I can identify and correct common errors and in R programs.
   
@@ -40,7 +40,7 @@
   
   I can identify and correct common collaboration errors when working with Git/GitHub.
 
-5. Write clear, efficient, and well-documented R programs
+Objective-5. Write clear, efficient, and well-documented R programs
   
   I can use a project-based workflow to organize and run reproducible analyses.
   

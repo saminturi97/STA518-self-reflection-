@@ -14,6 +14,7 @@ library(readr)
 library(readxl)
 library(stringr)
 library(dplyr)
+library(nlme)
 ```
 
 # STA 518 Objectives:-
@@ -42,7 +43,9 @@ banksal
 # reading a large data set 
 nls <- read_dta(file="https://github.com/ozanj/rclass/raw/master/data/nls72/nls72stu_percontor_vars.dta")
 nls
+nc <- read_csv("data/nc.csv") 
 country <- gapminder
+people <- starwars
 ```
 
 I can isolate information from a larger data source.
@@ -138,6 +141,105 @@ long_measures %>%
 I can transform information to be in a format better suited for specific tasks.
 
 ```{r}
+# parsing strings of information to create new variables and controlling the order in which  variables are displayed 
+people %>% 
+  drop_na(skin_color) %>% 
+  group_by(skin_color) %>% 
+  summarise(n = n()) %>% 
+  arrange(n) %>% 
+  print(n = length(skin_color))
 
+# reducing the dataset for better fit
+reducing_dataset <- people %>% 
+  select(skin_color) %>% 
+  separate(skin_color, 
+           into =  c("skin_first", "skin_second")) %>% 
+  pivot_longer(cols = everything(), 
+               names_to = "skin_order", 
+               values_to = "skin_color", 
+               values_drop_na = TRUE) %>% 
+  select(skin_color)
+reducing_dataset
+
+```
+
+## Create graphical displays and numerical summaries of data for exploratory analysis and presentations.
+
+I can create graphical displays of data that highlight key features. I can combine multiple graphical displays or numerical summaries into an effective data product.
+
+```{r}
+# histogram
+ggplot(data = nc, aes(x = weeks))+ 
+  geom_histogram()
+# collered and labeled histogram
+ggplot(data = nc, aes(x = weight))+ 
+  geom_histogram(binwidth = 1, color = "white", fill = "steelblue")+
+  labs(x = "weight of newborns (which is in lbs)", y = "number of cases", 
+       title = "Relationship between weight of newborns (which is in lbs) and number of cases")
+# two histo grams in one plane
+ggplot(data = nc, aes(x = weight)) +
+  geom_histogram(binwidth = 0.5, color = "white", fill = "steelblue") +
+  facet_wrap(~ gender, ncol = 1)
+# scatter plot
+ggplot(data = nc, aes(x = weeks, y = weight)) + 
+  geom_point()
+# box plot
+ggplot(data = nc, aes(x = habit, y = weeks)) +
+  geom_boxplot(fill = "sienna")+
+  labs(x = "smoking habit", y = "pregnancy duration in weeks", 
+       title = "pregnancy duration in weeks by smoking habit")
+# adding color and labels to the plot
+ggplot(data = nc, aes(x = mage, y = weight, color = gender))+ 
+  geom_point() + 
+  labs(x = "age shown in months of newborns(Mon)", y = "weight of newborns(lbs)",
+       title = "Relationship between age shown in months of newborns(Mon) and weight of newborns(lbs)")
+# bar plot of the variable eye_color
+people %>% 
+  mutate(eye_color = fct_lump(eye_color, prop = 0.03), 
+         eye_color = fct_infreq(eye_color),            
+         eye_color = fct_rev(eye_color)) %>%           
+  ggplot(mapping = aes(x = eye_color)) +
+  geom_bar()
+```
+
+Creating my own functions
+
+```{r}
+pow <- function(x, y) {
+# function to print x raised to the power y
+result <- x^y
+print(paste(x,"raised to the power", y, "is", result))
+}
+
+pow(2,10)
+pow(5,2)
+```
+
+```{r}
+# this function will return whether a given number is positive, negative or zero
+check <- function(x) {
+if (x > 0) {
+result <- "Positive"
+}
+else if (x < 0) {
+result <- "Negative"
+}
+else {
+result <- "Zero"
+}
+return(result)
+}
+
+check(1)
+check(-10)
+check(0)
+```
+
+```{r}
+g <- factor(c("a","b","a","b","a","b","a","b","a","b","a","b"))
+v <- c(1,4,1,4,1,4,2,8,2,8,2,8)
+d <- data.frame(g,v)
+d$cs <- ave(v, g, FUN=cumsum)
+d
 ```
 

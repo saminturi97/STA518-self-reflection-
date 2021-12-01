@@ -107,8 +107,8 @@ wide_measures <- country %>%
   filter(year == 2002) %>% 
   group_by(continent) %>% 
   summarise(
-    med_LE = median(lifeExp),
-    mean_LE = mean(lifeExp)
+    med_LE = median(pop),
+    mean_LE = mean(pop)
   )
 
 wide_measures %>% 

@@ -42,6 +42,7 @@ banksal
 # reading a large data set 
 nls <- read_dta(file="https://github.com/ozanj/rclass/raw/master/data/nls72/nls72stu_percontor_vars.dta")
 nls
+country <- gapminder
 ```
 
 I can isolate information from a larger data source.
@@ -101,7 +102,37 @@ semi_join(x = orders, y = customers, by = "id")
 I can restructure information to be in a “tidy” format.
 
 ```{r}
+# restructure a dataset to be in a more efficient format and add features to make a table more understandable
+wide_measures <- country %>% 
+  filter(year == 2002) %>% 
+  group_by(continent) %>% 
+  summarise(
+    med_LE = median(lifeExp),
+    mean_LE = mean(lifeExp)
+  )
 
+wide_measures %>% 
+  pivot_longer(
+    cols = ends_with("_LE"),
+    names_to = "measure",
+    values_to = "values"
+  ) %>% 
+  ggplot(aes(x = continent, y = values,
+             group = measure, color = measure)) +
+  geom_line()
+
+long_measures <- wide_measures %>% 
+  pivot_longer(
+    cols = ends_with("_LE"),
+    names_to = "measure",
+    values_to = "values"
+  )
+
+long_measures %>% 
+  pivot_wider(
+    names_from = continent,
+    values_from = values
+  )
 ```
 
 I can transform information to be in a format better suited for specific tasks.
